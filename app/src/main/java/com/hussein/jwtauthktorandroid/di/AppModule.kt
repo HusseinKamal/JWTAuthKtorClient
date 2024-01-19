@@ -23,7 +23,7 @@ object AppModule {
     @Singleton
     fun provideAuthApi(): AuthApi {
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/") // ip address for emulator
+            .baseUrl("http://10.0.2.2:8080/") // ip address for emulator //You should confirm that you connect to Mongo DB with your ip adddrss
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
