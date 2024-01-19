@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.hussein.jwtauthktorandroid.auth.AuthResult
 import com.hussein.jwtauthktorandroid.auth.AuthUiEvent
 import com.hussein.jwtauthktorandroid.data.MainViewModel
@@ -27,7 +28,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 @Destination(start = true)
 fun AuthScreen(
-    navigator: DestinationsNavigator,
+    //navigator: NavHostController,
     viewModel: MainViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
@@ -36,11 +37,16 @@ fun AuthScreen(
         viewModel.authResult.collect { result ->
             when(result) {
                 is AuthResult.Authorized -> {
-                    navigator.navigate(SecretScreenDestination) {
+                   /* navigator.navigate(SecretScreenDestination) {
                         popUpTo(AuthScreenDestination.route) {
                             inclusive = true
                         }
-                    }
+                    }*/
+                    Toast.makeText(
+                        context,
+                        "You're  Authorized",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 is AuthResult.Unauthorized -> {
                     Toast.makeText(
@@ -67,7 +73,7 @@ fun AuthScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
-            value = state.signInUserName,
+            value = state.signUpUserName,
             onValueChange = {
                 viewModel.onEvent(AuthUiEvent.SignUpUsernameChanged(it))
             },

@@ -3,6 +3,7 @@ package com.hussein.jwtauthktorandroid
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.hussein.jwtauthktorandroid.ui.AuthScreen
 import com.hussein.jwtauthktorandroid.ui.theme.JWTAuthKtorAndroidTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,7 +14,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JWTAuthKtorAndroidTheme {
-                DestinationsNavHost(navGraph = NavGraphs.root)
+                //DestinationsNavHost(navGraph = NavGraphs.root)
+                AuthScreen()
             }
         }
     }
